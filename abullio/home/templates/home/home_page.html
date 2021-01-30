@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block top_nav %}{% endblock %}
+
+{% block header_content %}
+    <img src="{{ MEDIA_URL }}{{ page.brand_img}}" class="w-25 img-thumbnail border-0" alt="...">
+    
+    <h2>{{ page.title}}</h2> 
+    <p>{{ page.sub_title}}</p>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid text-center bg-light">
+    {{ page.body|richtext }}
+</div>
+    {# parallax #}
+    {% for post in sectionpages %}
+    <div class="container-fluid parallax text-center p-5"style="background-image: url({{ MEDIA_URL }}{{ post.bg_image }});">
+        <h2><kbd>{{ post.title }}</kbd></h2>
+        <div class="row justify-content-center">
+            <div class="col-8 align-self-center p-3 text-light"
+            style="background-color: {{ post.bg_HEX }}">
+                {{ post.intro }}
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8 align-self-center bg-light">
+                {{ post.snap|richtext }}
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8 align-self-center bg-light">
+                <a href="{% pageurl post %}">
+                    <i class="fas fa-arrow-right fa-4x"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+    <div class="container-fluid bg-light p-5">
+        <div class="row justify-content-center ">
+            <h2><kbd>Blog</kbd></h2>
+        </div>
+        <div class="row justify-content-center">
+        {# deck #}
+        {% for blog in latestblog %}
+            <div class="col-sm-6 col-lg-3">
+                <div class="card border-0"> 
+                    <img class="card-img-top" alt="Card header image" 
+                            src="{{ MEDIA_URL }}{{ blog.bg_image }}"
+                            style="width: 100%;
+                            height: 20vw;
+                            object-fit: cover;"
+                            >  
+                    <div class="card-body">  
+                        <h5 class="card-title">{{ blog.title }}</h5>  
+                        <p class="card-text">{{ blog.intro }}</p>  
+                        <a href="{% pageurl blog %}" class="stretched-link"></a> 
+                    </div>  
+                </div>
+            </div>
+        {% endfor %}
+        {# end deck #}
+
+        </div>
+        <div class="row justify-content-center text-center">
+            <div class="col-8 align-self-center bg-light">
+                <a href="{% slugurl 'blog' %}">
+                    <i class="fas fa-arrow-right fa-4x"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

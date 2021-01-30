@@ -1,0 +1,24 @@
+// abullio.scss
+// Option A: Include all of Bootstrap
+
+/* 1. Global - Set up the things
+/* ---------------------------------------------------------- */
+$font-family-base:       'Piazzolla' !default;
+
+/* 2. layout */
+.parallax {
+  /* The image used */
+  background-image: url("http://localhost/abullio_media/vision.jpeg");
+
+  /* Set a specific height */
+  height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+

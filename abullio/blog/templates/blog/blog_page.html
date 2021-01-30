@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+{% block header %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-light">
+    
+    {# bullio_article #}
+    <div class="row border-0" style="
+    background-image: url({{ MEDIA_URL }}{{ page.bg_image }});
+    height: 30vw;
+    background-size: cover;
+    ">
+    <!-- picture holder -->
+    </div>
+    <div class="row bg-transparent justify-content-center" style="
+    margin-top: -10vw;
+    ">
+        <div class="col-md-8 bg-light">
+            <div class="card-body">
+                <h3>{{ page.title }}</h3>
+                <p>{{ page.intro }}</p>
+                {{ page.snap|richtext }}
+                {{ page.body|richtext }}
+            </div>
+        </div>
+    </div>
+    <!-- end article -->
+</div>
+{% endblock %}
